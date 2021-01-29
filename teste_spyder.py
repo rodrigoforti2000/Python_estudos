@@ -1,8 +1,14 @@
 # -*- coding: utf-8 -*-
-"""
-Spyder Editor
 
-This is a temporary script file.
-"""
+#importação de pacotes
+import numpy as np
+import pandas as pd
 
-print("Olá, meu nome é Rodrigo Forti")
+#teste de comandos
+x = np.array(1)
+d = {'col1': [1, 2], 'col2': [3, 4]}
+df = pd.DataFrame(data=d)
+df
+
+print(x)
+
