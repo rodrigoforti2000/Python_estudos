@@ -126,8 +126,33 @@ for i in range(max):
     print(dados.columns[i], round(centroids[:, i].var(), 6))
     
 #selecionando atributos específicos que apresentaram maior variância
-descripition = dados.groupby('cluster')['BALANCE','PURCHASES','CASH_ADVANCE','CREDIT_LIMIT','PAYMENTS'].describe()
+descripition_mean = dados.groupby('cluster')['BALANCE','PURCHASES','CASH_ADVANCE','CREDIT_LIMIT','PAYMENTS', 'PRC_FULL_PAYMENT'].mean()
+descripition_sd = dados.groupby('cluster')['BALANCE','PURCHASES','CASH_ADVANCE','CREDIT_LIMIT','PAYMENTS'].var()
 n_clients = dados['cluster'].value_counts()
-print(descripition.mean)
-descripition['n_clients'] = n_clients
-print(descripition)
+print(pd.concat([descripition_mean, n_clients], axis = 1))
+
+
+# Cluster 0: Clientes com os menor limite de crédito,
+#            menor quantidade de clientes
+    
+# Cluster 1: Clientes com maior valor gasto em compras com grande diferença (Purchases),
+#            Melhores pagadores (PRC_FULL_PAYMENT) 
+#Clientes que gastam muito com compras
+
+# Cluster 2: Clientes com maiores valores de saque muito diferente,
+#Clientes com os maiores valores de saques 
+
+# Cluster 3: Clientes com os maiores valores gastos (Balance),
+#            Menor valor gasto em compras (Purchases),
+#            Alto valor de saque 
+#            Mal pagadores
+#Clientes que mais gastam. Com foco em saque.
+
+# Cluster 4: Clientes com os menores valores gastos (Balance),
+#            menor valor de saque (Cash advance),
+#            maior limite de cartão (Credit_limit),
+#            bons pagadores,
+#            maior número de clientes
+#Clientes que gastam pouco, maior limite
+
+#Parte importante, seleção de atributos
